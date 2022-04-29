@@ -1,6 +1,6 @@
 # README
 
-## Django & postgres
+## Django & postgres & React
 
 
 ### Prepare to create containers
