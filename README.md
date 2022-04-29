@@ -9,6 +9,7 @@
 ```console
 $ docker-compose run --rm django django-admin startproject template .
 ```
+`django` is the service name.
 `tamplate` is directory name of a Django project. The last `.` is that create this project under this directory.
 `--rm` is to delete the command the container that was created for a Django project.
 
@@ -40,6 +41,7 @@ DATABASES = {
 ```console
 $ docker-compose run --rm react sh -c "npx create-react-app app --use-npm"
 ```
+`react` is the service name.
 `app`is a React app name.The app name use in `docker-compose.yml`.
 `--rm`is to delete the command the container that was created for a React app.
 
