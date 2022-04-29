@@ -1,0 +1,10 @@
+Django
+psycopg2
+gunicorn
+django-filter
+django-extensions
+djangorestframework
+djangorestframework-simplejwt
+django-environ
+jaconv
+coreapi

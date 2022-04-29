@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - ./postgres/logs:/var/log
+    container_name: postgres-container
+    ports:
+      - "5432:5432" # change port number where relevant
+    environment:
+      - POSTGRES_DB=django_db
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+
+  django:
+    build: ./django # The directory of Dockerfile for Django
+    volumes:
+      - ./django/:/code # The workdir directory of Dockerfile for django
+    container_name: django-container
+    ports:
+      - "8000:8000" # Change port number where relevant
+    environment:
+      - POSTGRES_NAME=django_db # POSTGRES_DB name in postgres environment
+      - POSTGRES_USER=app # POSTGRES_USER name in postgres environment
+      - POSTGRES_PASSWORD=app # POSTGRES_PASSWORD name in postgres environment
+      - TZ='Asia/Tokyo' 
+    # The command after docker-compose up -d command
+    command: bash -c "python3 manage.py runserver 0.0.0.0:8000 --insecure"
+    # Build after the below services
+    depends_on:
+      - postgres
+
+  react:
+    build: ./react # The directory of Dockerfile for React
+    volumes:
+      - ./react/front:/front/app # The workdir directory name/react-app directory in Dockerfile for React
+    container_name: react-container
+    ports:
+      - "3000:3000" # change port number where relevant
+    command: sh -c "cd app && npm start"
+    

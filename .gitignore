@@ -1,0 +1,5 @@
+.history/
+postgres/
+react/front/
+django/template/
+django/manage.py
